@@ -1,0 +1,103 @@
+// compileExpanded: ../styles.css
+
+$color-main: #4405f7;
+$color-accent: #f72359;
+$color-dark: #0b0c0d;
+$color-on-main: #fff;
+$color-on-dark: #fff;
+
+$font-family: 'Share Tech Mono', monospace;
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: $color-dark;
+  color: $color-on-dark;
+  font-family: $font-family;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+header {
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, $color-main, $color-accent) 10;
+  img {
+    height: 100%;
+    padding: 15px;
+  }
+}
+
+#messages {
+  overflow: auto;
+  .message {
+    margin: 16px 0;
+    color: mix($color-main, $color-on-dark);
+    p {
+      margin: 0;
+    }
+    .message-head {
+      opacity: .5;
+      span {
+        opacity: .5;
+      }
+    }
+    .message-content {
+
+    }
+    &.admin {
+      text-align: center;
+      color: $color-on-dark;
+    }
+    &.sent {
+      text-align: right;
+      color: mix($color-accent, $color-on-dark);
+    }
+  }
+}
+
+#message-form {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: 35px;
+  input {
+    border-radius: .25rem 0 0 .25rem;
+  }
+  button {
+    border-radius: 0 .25rem .25rem 0;
+  }
+}
+
+input {
+  border-radius: .25rem;
+  background-color: #000;
+  border: none;
+  padding-left: 10px;
+  color: transparentize($color-on-dark, .2);
+  width: 100%;
+  font-family: $font-family;
+}
+button {
+  border-radius: .25rem;
+  border: none;
+  cursor: pointer;
+  background-color: $color-main;
+  transition: .2s;
+  color: $color-on-main;
+  text-transform: uppercase;
+  font-family: $font-family;
+  &:hover {
+    background-color: $color-accent;
+  }
+}

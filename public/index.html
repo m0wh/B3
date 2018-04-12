@@ -5,20 +5,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|VT323" rel="stylesheet">
   </head>
   <body>
-    <p>Welcome to B3</p>
+    <header class="container">
+      <img src="/image/logo-pretty.png" alt="B3 Logo">
+    </header>
 
-    <ul id="messages"></ul>
+    <div id="messages" class="container"></div>
 
-    <form id="message-form">
-      <input name="message" type="text" placeholder="Type a message..." autocomplete="off"/>
+    <form id="message-form" class="container">
+      <input name="message" type="text" placeholder="Type a message..." autofocus autocomplete="off"/>
       <button type="submit">Send</button>
     </form>
 
+    <script id="message-template" type="text/template">
+      <div class="message">
+        <p class="message-head">{{from}} <span>{{createdAt}}</span></p>
+        <p class="message-content">{{text}}</p>
+      </div>
+    </script>
 
-    <script src="/js/libs/jquery-3.3.1.min.js"></script>
+    <script id="message-admin-template" type="text/template">
+      <div class="message admin">
+        <p class="message-head"><span>{{createdAt}}</span></p>
+        <p class="message-content">{{text}}</p>
+      </div>
+    </script>
+
+    <script id="message-sent-template" type="text/template">
+      <div class="message sent">
+        <p class="message-head">{{from}} <span>{{createdAt}}</span></p>
+        <p class="message-content">{{text}}</p>
+      </div>
+    </script>
+
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/jquery-3.3.1.min.js"></script>
+    <script src="/js/libs/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
     <script src="/js/index.js"></script>
   </body>
 </html>

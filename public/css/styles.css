@@ -1,0 +1,99 @@
+* {
+		box-sizing: border-box;
+}
+
+body {
+		margin: 0;
+		background-color: #0b0c0d;
+		color: #fff;
+		font-family: "Share Tech Mono", monospace;
+}
+
+.container {
+		margin: 0 auto;
+		max-width: 600px;
+}
+
+header {
+		height: 75px;
+		display: flex;
+		justify-content: center;
+		border-bottom: 2px solid;
+		border-image: linear-gradient(90deg, #4405f7, #f72359) 10;
+}
+
+header img {
+		height: 100%;
+		padding: 15px;
+}
+
+#messages {
+		overflow: auto;
+}
+
+#messages .message {
+		margin: 16px 0;
+		color: #a282fb;
+}
+
+#messages .message p {
+		margin: 0;
+}
+
+#messages .message .message-head {
+		opacity: .5;
+}
+
+#messages .message .message-head span {
+		opacity: .5;
+}
+
+#messages .message.admin {
+		text-align: center;
+		color: #fff;
+}
+
+#messages .message.sent {
+		text-align: right;
+		color: #fb91ac;
+}
+
+#message-form {
+		display: flex;
+		justify-content: center;
+		align-items: stretch;
+		height: 35px;
+}
+
+#message-form input {
+		border-radius: .25rem 0 0 .25rem;
+}
+
+#message-form button {
+		border-radius: 0 .25rem .25rem 0;
+}
+
+input {
+		border-radius: .25rem;
+		background-color: #000;
+		border: none;
+		padding-left: 10px;
+		color: rgba(255, 255, 255, 0.8);
+		width: 100%;
+		font-family: "Share Tech Mono", monospace;
+}
+
+button {
+		border-radius: .25rem;
+		border: none;
+		cursor: pointer;
+		background-color: #4405f7;
+		transition: .2s;
+		color: #fff;
+		text-transform: uppercase;
+		font-family: "Share Tech Mono", monospace;
+}
+
+button:hover {
+		background-color: #f72359;
+}
