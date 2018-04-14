@@ -3,12 +3,11 @@
 $color-main: #4405f7;
 $color-accent: #f72359;
 $color-dark: #0b0c0d;
+$color-mega-dark: #000;
 $color-on-main: #fff;
 $color-on-dark: #fff;
 
 $font-family: 'Share Tech Mono', monospace;
-
-
 
 * {
   box-sizing: border-box;
@@ -21,6 +20,52 @@ body {
   font-family: $font-family;
 }
 
+
+body {    // changing views
+  &.disconnected {
+    > #connection { display: flex; }
+    > #chat { display: none; }
+  }
+  > #connection { display: none; }
+  > #chat { display: block; }
+}
+
+#connection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+  margin: 0 auto;
+  height: 100vh;
+  flex-direction:column;
+  svg.logo {
+    fill:$color-accent;
+    .up {
+      fill: $color-main;
+    }
+    max-width: 100%;
+    width: 50px;
+    margin: 30px;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: 35px;
+    input {
+      border-radius: .25rem 0 0 .25rem;
+    }
+    button {
+      border-radius: 0 .25rem .25rem 0;
+    }
+  }
+  #error {
+    color: $color-accent;
+    background-color: $color-dark;
+    position: absolute;
+  }
+}
+
 .container {
   margin: 0 auto;
   max-width: 600px;
@@ -29,10 +74,15 @@ body {
 header {
   height: 75px;
   display: flex;
-  justify-content: center;
-  border-bottom: 2px solid;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid;
   border-image: linear-gradient(90deg, $color-main, $color-accent) 10;
-  img {
+  svg.logo {
+    fill:$color-accent;
+    .up {
+      fill: $color-main;
+    }
     height: 100%;
     padding: 15px;
   }
@@ -42,7 +92,7 @@ header {
   overflow: auto;
   .message {
     margin: 16px 0;
-    color: mix($color-main, $color-on-dark);
+    color: mix($color-main, $color-on-dark, 70%);
     p {
       margin: 0;
     }
@@ -57,11 +107,15 @@ header {
     }
     &.admin {
       text-align: center;
-      color: $color-on-dark;
+      color: mix(mix($color-main, $color-accent), $color-on-dark, 70%);
+      opacity: .7;
+      .message-head {
+        opacity: .9;
+      }
     }
     &.sent {
       text-align: right;
-      color: mix($color-accent, $color-on-dark);
+      color: mix($color-accent, $color-on-dark, 70%);
     }
   }
 }
@@ -81,21 +135,21 @@ header {
 
 input {
   border-radius: .25rem;
-  background-color: #000;
+  background-color: $color-mega-dark;
   border: none;
   padding-left: 10px;
-  color: transparentize($color-on-dark, .2);
+  color: transparentize($color-on-dark, .3);
   width: 100%;
   font-family: $font-family;
 }
 button {
   border-radius: .25rem;
   border: none;
+  padding: 10px;
   cursor: pointer;
   background-color: $color-main;
   transition: .2s;
   color: $color-on-main;
-  text-transform: uppercase;
   font-family: $font-family;
   &:hover {
     background-color: $color-accent;

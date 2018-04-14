@@ -3,21 +3,42 @@
   <head>
     <title>BeThree</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|VT323" rel="stylesheet">
+    <link rel="stylesheet" href="/css/vendor/fa-brands.css">
   </head>
-  <body>
-    <header class="container">
-      <img src="/image/logo-pretty.png" alt="B3 Logo">
-    </header>
+  <body class="disconnected">
+    <div id="connection">
+      <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154.15 231.23">
+        <path class="up" d="M154.15,154.15a77.08,77.08,0,0,1-77.08,77.08H0V154.15a77.08,77.08,0,1,1,154.15,0Z" />
+        <path d="M154.15,0l-42.6,85.2A77.08,77.08,0,0,0,0,154.15V0Z" />
+      </svg>
+      <form id="connection-form">
+        <input name="username" type="text" placeholder="Choose a name..." autofocus autocomplete="off"/>
+        <button type="submit">Enter</button>
+      </form>
+      <p id="error"></p>
+    </div>
 
-    <div id="messages" class="container"></div>
+    <div id="chat">
+      <header class="container">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 154.15 231.23">
+          <path class="up" d="M154.15,154.15a77.08,77.08,0,0,1-77.08,77.08H0V154.15a77.08,77.08,0,1,1,154.15,0Z" />
+          <path d="M154.15,0l-42.6,85.2A77.08,77.08,0,0,0,0,154.15V0Z" />
+        </svg>
+        <button name="button">Disconnect</button>
+      </header>
 
-    <form id="message-form" class="container">
-      <input name="message" type="text" placeholder="Type a message..." autofocus autocomplete="off"/>
-      <button type="submit">Send</button>
-    </form>
+      <div id="messages" class="container"></div>
+
+      <form id="message-form" class="container">
+        <input name="message" type="text" placeholder="Type a message..." autofocus autocomplete="off"/>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <!-- Mustache.js templates -->
 
     <script id="message-template" type="text/template">
       <div class="message">
@@ -39,6 +60,9 @@
         <p class="message-content">{{text}}</p>
       </div>
     </script>
+
+
+    <!-- Javascript files -->
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/libs/jquery-3.3.1.min.js"></script>

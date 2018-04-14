@@ -15,20 +15,28 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log(`(+) ${socket.id}`);
 
-  socket.emit('newMessage', generateMessage('Admin', 'Welcome to B3'));
-
-  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
+  socket.on('addUser', (username, callback) => {
+    const secureUsername = secureString(username);
+    if (usernameIsValid(secureUsername)) {
+      socket.username = secureUsername;
+      socket.emit('newMessage', generateMessage('Admin', `Welcome to B3, ${socket.username}.`));
+      socket.broadcast.emit('newMessage', generateMessage('Admin', `${socket.username} joined.`));
+      callback(true);
+    } else {
+      callback(false);
+    }
+  });
 
   socket.on('createMessage', (message, callback) => {
     console.log('Create message', message);
-    io.emit('newMessage', generateMessage(message.from, message.text));
+    io.emit('newMessage', generateMessage(socket.username, message));
     callback();
   });
 
 
   socket.on('disconnect', () => {
     console.log(`(-) ${socket.id}`);
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'A user left'));
+    socket.broadcast.emit('newMessage', generateMessage('Admin', `${socket.username} left.`));
   });
 
 });
@@ -36,3 +44,16 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
   console.log(`Server is up on ${port}`);
 });
+
+
+function secureString(str) {
+  return String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').trim();
+}
+
+function usernameIsValid(usrnm) {
+  if(usrnm == "Admin" || usrnm == "" || usrnm == undefined) {
+    return false;
+  } else {
+    return true;
+  }
+}

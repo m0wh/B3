@@ -9,6 +9,64 @@ body {
 		font-family: "Share Tech Mono", monospace;
 }
 
+body.disconnected > #connection {
+		display: flex;
+}
+
+body.disconnected > #chat {
+		display: none;
+}
+
+body > #connection {
+		display: none;
+}
+
+body > #chat {
+		display: block;
+}
+
+#connection {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 250px;
+		margin: 0 auto;
+		height: 100vh;
+		flex-direction: column;
+}
+
+#connection svg.logo {
+		fill: #f72359;
+		max-width: 100%;
+		width: 50px;
+		margin: 30px;
+}
+
+#connection svg.logo .up {
+		fill: #4405f7;
+}
+
+#connection form {
+		display: flex;
+		justify-content: center;
+		align-items: stretch;
+		height: 35px;
+}
+
+#connection form input {
+		border-radius: .25rem 0 0 .25rem;
+}
+
+#connection form button {
+		border-radius: 0 .25rem .25rem 0;
+}
+
+#connection #error {
+		color: #f72359;
+		background-color: #0b0c0d;
+		position: absolute;
+}
+
 .container {
 		margin: 0 auto;
 		max-width: 600px;
@@ -17,14 +75,20 @@ body {
 header {
 		height: 75px;
 		display: flex;
-		justify-content: center;
-		border-bottom: 2px solid;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid;
 		border-image: linear-gradient(90deg, #4405f7, #f72359) 10;
 }
 
-header img {
+header svg.logo {
+		fill: #f72359;
 		height: 100%;
 		padding: 15px;
+}
+
+header svg.logo .up {
+		fill: #4405f7;
 }
 
 #messages {
@@ -33,7 +97,7 @@ header img {
 
 #messages .message {
 		margin: 16px 0;
-		color: #a282fb;
+		color: #7c50f9;
 }
 
 #messages .message p {
@@ -50,12 +114,17 @@ header img {
 
 #messages .message.admin {
 		text-align: center;
-		color: #fff;
+		color: #bb5bc2;
+		opacity: .7;
+}
+
+#messages .message.admin .message-head {
+		opacity: .9;
 }
 
 #messages .message.sent {
 		text-align: right;
-		color: #fb91ac;
+		color: #f9658b;
 }
 
 #message-form {
@@ -78,7 +147,7 @@ input {
 		background-color: #000;
 		border: none;
 		padding-left: 10px;
-		color: rgba(255, 255, 255, 0.8);
+		color: rgba(255, 255, 255, 0.7);
 		width: 100%;
 		font-family: "Share Tech Mono", monospace;
 }
@@ -86,11 +155,11 @@ input {
 button {
 		border-radius: .25rem;
 		border: none;
+		padding: 10px;
 		cursor: pointer;
 		background-color: #4405f7;
 		transition: .2s;
 		color: #fff;
-		text-transform: uppercase;
 		font-family: "Share Tech Mono", monospace;
 }
 
