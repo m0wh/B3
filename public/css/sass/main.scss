@@ -2,21 +2,20 @@
 
 $color-main: #4405f7;
 $color-accent: #f72359;
-$color-dark: #0b0c0d;
-$color-mega-dark: #000;
+$color-bg: #0b0c0d;
+$color-mega-bg: #000;
 $color-on-main: #fff;
-$color-on-dark: #fff;
+$color-on-bg: #fff;
 
-$font-family: 'Share Tech Mono', monospace;
-
+$font-family: 'Share Tech Mono', 'VT323', 'Montserrat', monospace;
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background-color: $color-dark;
-  color: $color-on-dark;
+  background-color: $color-bg;
+  color: $color-on-bg;
   font-family: $font-family;
 }
 
@@ -38,11 +37,7 @@ body {    // changing views
   margin: 0 auto;
   height: 100vh;
   flex-direction:column;
-  svg.logo {
-    fill:$color-accent;
-    .up {
-      fill: $color-main;
-    }
+  img.logo {
     max-width: 100%;
     width: 50px;
     margin: 30px;
@@ -61,7 +56,7 @@ body {    // changing views
   }
   #error {
     color: $color-accent;
-    background-color: $color-dark;
+    background-color: $color-bg;
     position: absolute;
   }
 }
@@ -72,19 +67,14 @@ body {    // changing views
 }
 
 header {
-  height: 75px;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid;
   border-image: linear-gradient(90deg, $color-main, $color-accent) 10;
-  svg.logo {
-    fill:$color-accent;
-    .up {
-      fill: $color-main;
-    }
-    height: 100%;
-    padding: 15px;
+  img.logo {
+    height: 50px;
   }
 }
 
@@ -92,14 +82,14 @@ header {
   overflow: auto;
   .message {
     margin: 16px 0;
-    color: mix($color-main, $color-on-dark, 70%);
+    color: $color-main;
     p {
       margin: 0;
     }
     .message-head {
       opacity: .5;
       span {
-        opacity: .5;
+        opacity: .7;
       }
     }
     .message-content {
@@ -107,7 +97,7 @@ header {
     }
     &.admin {
       text-align: center;
-      color: mix(mix($color-main, $color-accent), $color-on-dark, 70%);
+      color: mix($color-main, $color-accent);
       opacity: .7;
       .message-head {
         opacity: .9;
@@ -115,7 +105,7 @@ header {
     }
     &.sent {
       text-align: right;
-      color: mix($color-accent, $color-on-dark, 70%);
+      color: $color-accent;
     }
   }
 }
@@ -135,10 +125,10 @@ header {
 
 input {
   border-radius: .25rem;
-  background-color: $color-mega-dark;
+  background-color: $color-mega-bg;
   border: none;
   padding-left: 10px;
-  color: transparentize($color-on-dark, .3);
+  color: transparentize($color-on-bg, .3);
   width: 100%;
   font-family: $font-family;
 }
