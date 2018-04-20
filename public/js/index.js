@@ -1,15 +1,18 @@
 var socket = io();
 var username;
+var id;
 
 socket.on('connect', function() {
   console.log('Connected to server');
+  id = socket.id;
 });
 
 $('#connection-form').on('submit', function(e) {
   e.preventDefault();
-  username = $('[name=username]').val();
+  username = $('[name=username]').val().trim();
   socket.emit('addUser', username, function(validUsername) {
     if(validUsername) {
+      socket.emit('joinRandomRoom');
       $('body').removeClass('disconnected');
     } else {
       $('#error').text("Error : not a valid name.").show(0).delay(3000).hide(0);
@@ -20,9 +23,9 @@ $('#connection-form').on('submit', function(e) {
 socket.on('newMessage', function(message) {
   var formattedTime = moment(message.createdAt).format('hh:mm');
   var template = $('#message-template').html();
-  if(message.from == 'Admin') {
+  if(message.fromId == 'administrator') {
     template = $('#message-admin-template').html();
-  } else if (message.from == username) {
+  } else if (message.fromId == id) {
     template = $('#message-sent-template').html();
   }
   var html = Mustache.render(template, {
@@ -45,6 +48,12 @@ $('#message-form').on('submit', function(e) {
   socket.emit('createMessage', messageInput, function(data) {
     $('[name=message]').val("");
   });
+});
+
+$('[name=disconnect]').click(function() {
+  socket.disconnect();
+  $('body').addClass('disconnected');
+  socket = io();
 });
 
 socket.on('disconnect', function() {
