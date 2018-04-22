@@ -6,7 +6,7 @@ body {
 		margin: 0;
 		background-color: #0b0c0d;
 		color: #fff;
-		font-family: "Share Tech Mono", "VT323", "Montserrat", monospace;
+		font-family: "Share Tech Mono", monospace;
 }
 
 body.disconnected > #connection {
@@ -80,6 +80,21 @@ header img.logo {
 		height: 50px;
 }
 
+#people {
+		list-style: none;
+		display: flex;
+		justify-content: space-around;
+		padding: 0;
+}
+
+#people li {
+		color: #9e14a8;
+}
+
+#people li.empty {
+		opacity: .5;
+}
+
 #messages {
 		overflow: auto;
 }
@@ -138,7 +153,7 @@ input {
 		padding-left: 10px;
 		color: rgba(255, 255, 255, 0.7);
 		width: 100%;
-		font-family: "Share Tech Mono", "VT323", "Montserrat", monospace;
+		font-family: "Share Tech Mono", monospace;
 }
 
 button {
@@ -149,7 +164,7 @@ button {
 		background-color: #4405f7;
 		transition: .2s;
 		color: #fff;
-		font-family: "Share Tech Mono", "VT323", "Montserrat", monospace;
+		font-family: "Share Tech Mono", monospace;
 }
 
 button:hover {

@@ -3,7 +3,6 @@ var username;
 var id;
 
 socket.on('connect', function() {
-  console.log('Connected to server');
   id = socket.id;
 });
 
@@ -12,7 +11,6 @@ $('#connection-form').on('submit', function(e) {
   username = $('[name=username]').val().trim();
   socket.emit('addUser', username, function(validUsername) {
     if(validUsername) {
-      socket.emit('joinRandomRoom');
       $('body').removeClass('disconnected');
     } else {
       $('#error').text("Error : not a valid name.").show(0).delay(3000).hide(0);
@@ -21,7 +19,7 @@ $('#connection-form').on('submit', function(e) {
 });
 
 socket.on('newMessage', function(message) {
-  var formattedTime = moment(message.createdAt).format('hh:mm');
+  var formattedTime = moment(message.createdAt).format('LT');
   var template = $('#message-template').html();
   if(message.fromId == 'administrator') {
     template = $('#message-admin-template').html();
@@ -60,11 +58,27 @@ socket.on('disconnect', function() {
   console.log('Disconnected from server');
 });
 
+socket.on('updateUserList', function (users) {
+  for (let u = 0; u < 3; u++) {
+    if (users[u]) {
+      $('#people>li').eq(u).text(users[u]).removeClass('empty');
+    } else {
+      $('#people>li').eq(u).text('Empty').addClass('empty');
+    }
+  }
+});
+
+
+
+/*
+  FRONT END
+*/
+
 resizeChat();
 $(window).resize(function() {
   resizeChat();
 });
 
 function resizeChat() {
-  $('#messages').height(window.innerHeight-150);
+  $('#messages').height(window.innerHeight-200);
 }

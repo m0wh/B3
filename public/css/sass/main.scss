@@ -7,7 +7,7 @@ $color-mega-bg: #000;
 $color-on-main: #fff;
 $color-on-bg: #fff;
 
-$font-family: 'Share Tech Mono', 'VT323', 'Montserrat', monospace;
+$font-family: 'Share Tech Mono', monospace;
 * {
   box-sizing: border-box;
 }
@@ -75,6 +75,19 @@ header {
   border-image: linear-gradient(90deg, $color-main, $color-accent) 10;
   img.logo {
     height: 50px;
+  }
+}
+
+#people {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  li {
+    color: mix($color-main, $color-accent);
+    &.empty {
+      opacity: .5;
+    }
   }
 }
 
