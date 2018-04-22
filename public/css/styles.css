@@ -35,15 +35,10 @@ body > #chat {
 		flex-direction: column;
 }
 
-#connection svg.logo {
-		fill: #f72359;
+#connection img.logo {
 		max-width: 100%;
 		width: 50px;
 		margin: 30px;
-}
-
-#connection svg.logo .up {
-		fill: #4405f7;
 }
 
 #connection form {
@@ -73,7 +68,7 @@ body > #chat {
 }
 
 header {
-		height: 75px;
+		height: 100px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -81,14 +76,23 @@ header {
 		border-image: linear-gradient(90deg, #4405f7, #f72359) 10;
 }
 
-header svg.logo {
-		fill: #f72359;
-		height: 100%;
-		padding: 15px;
+header img.logo {
+		height: 50px;
 }
 
-header svg.logo .up {
-		fill: #4405f7;
+#people {
+		list-style: none;
+		display: flex;
+		justify-content: space-around;
+		padding: 0;
+}
+
+#people li {
+		color: #9e14a8;
+}
+
+#people li.empty {
+		opacity: .5;
 }
 
 #messages {
@@ -97,7 +101,7 @@ header svg.logo .up {
 
 #messages .message {
 		margin: 16px 0;
-		color: #7c50f9;
+		color: #4405f7;
 }
 
 #messages .message p {
@@ -109,12 +113,12 @@ header svg.logo .up {
 }
 
 #messages .message .message-head span {
-		opacity: .5;
+		opacity: .7;
 }
 
 #messages .message.admin {
 		text-align: center;
-		color: #bb5bc2;
+		color: #9e14a8;
 		opacity: .7;
 }
 
@@ -124,7 +128,7 @@ header svg.logo .up {
 
 #messages .message.sent {
 		text-align: right;
-		color: #f9658b;
+		color: #f72359;
 }
 
 #message-form {

@@ -1,13 +1,14 @@
 var socket = io();
 var username;
+var id;
 
 socket.on('connect', function() {
-  console.log('Connected to server');
+  id = socket.id;
 });
 
 $('#connection-form').on('submit', function(e) {
   e.preventDefault();
-  username = $('[name=username]').val();
+  username = $('[name=username]').val().trim();
   socket.emit('addUser', username, function(validUsername) {
     if(validUsername) {
       $('body').removeClass('disconnected');
@@ -18,11 +19,11 @@ $('#connection-form').on('submit', function(e) {
 });
 
 socket.on('newMessage', function(message) {
-  var formattedTime = moment(message.createdAt).format('hh:mm');
+  var formattedTime = moment(message.createdAt).format('LT');
   var template = $('#message-template').html();
-  if(message.from == 'Admin') {
+  if(message.fromId == 'administrator') {
     template = $('#message-admin-template').html();
-  } else if (message.from == username) {
+  } else if (message.fromId == id) {
     template = $('#message-sent-template').html();
   }
   var html = Mustache.render(template, {
@@ -47,9 +48,31 @@ $('#message-form').on('submit', function(e) {
   });
 });
 
+$('[name=disconnect]').click(function() {
+  socket.disconnect();
+  $('body').addClass('disconnected');
+  socket = io();
+});
+
 socket.on('disconnect', function() {
   console.log('Disconnected from server');
 });
+
+socket.on('updateUserList', function (users) {
+  for (let u = 0; u < 3; u++) {
+    if (users[u]) {
+      $('#people>li').eq(u).text(users[u]).removeClass('empty');
+    } else {
+      $('#people>li').eq(u).text('Empty').addClass('empty');
+    }
+  }
+});
+
+
+
+/*
+  FRONT END
+*/
 
 resizeChat();
 $(window).resize(function() {
@@ -57,5 +80,5 @@ $(window).resize(function() {
 });
 
 function resizeChat() {
-  $('#messages').height(window.innerHeight-150);
+  $('#messages').height(window.innerHeight-200);
 }
