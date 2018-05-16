@@ -6,7 +6,7 @@ body {
 		margin: 0;
 		background-color: #0b0c0d;
 		color: #fff;
-		font-family: "Share Tech Mono", monospace;
+		font-family: "Space Mono", monospace;
 }
 
 body.disconnected > #connection {
@@ -83,12 +83,13 @@ header img.logo {
 #people {
 		list-style: none;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		padding: 0;
 }
 
 #people li {
 		color: #9e14a8;
+		line-height: 3;
 }
 
 #people li.empty {
@@ -153,7 +154,7 @@ input {
 		padding-left: 10px;
 		color: rgba(255, 255, 255, 0.7);
 		width: 100%;
-		font-family: "Share Tech Mono", monospace;
+		font-family: "Space Mono", monospace;
 }
 
 button {
@@ -164,7 +165,7 @@ button {
 		background-color: #4405f7;
 		transition: .2s;
 		color: #fff;
-		font-family: "Share Tech Mono", monospace;
+		font-family: "Space Mono", monospace;
 }
 
 button:hover {
