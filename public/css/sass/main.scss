@@ -7,7 +7,7 @@ $color-mega-bg: #000;
 $color-on-main: #fff;
 $color-on-bg: #fff;
 
-$font-family: 'Share Tech Mono', monospace;
+$font-family: 'Space Mono', monospace;
 * {
   box-sizing: border-box;
 }
@@ -81,10 +81,11 @@ header {
 #people {
   list-style: none;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0;
   li {
     color: mix($color-main, $color-accent);
+    line-height: 3;
     &.empty {
       opacity: .5;
     }
