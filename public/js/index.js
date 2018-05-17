@@ -2,7 +2,7 @@ var socket = io();
 var username;
 var id;
 
-var linkDetectionRegex = new RegExp('((http|https|ftp|ftps)\:\/\/)?[a-zA-Z0-9\-\.]+\.([a-z]{1|2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal|fr|es|org)(\/\S*)?');
+var linkDetectionRegex = new RegExp('((https?|ftp|ftps)\:\/\/)?[a-zA-Z0-9\-\.]+\.([a-z]{1,4}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal|fr|es|org)((\/|\:)\S*)?');
 
 socket.on('connect', function() {
   id = socket.id;
@@ -90,7 +90,8 @@ function advancedText(text) {
     var address;
     address = /[a-z]+:\/\//.test(url) ? url : "http://" + url;
     url = url.replace(/^https?:\/\//, '');
-    console.log("<a href='" + address + "' target='_blank'>" + url + "</a>");
+    console.log(url, adress);
     return "<a href='" + address + "' target='_blank'>" + url + "</a>";
   });
 }
+ 
