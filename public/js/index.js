@@ -2,6 +2,8 @@ var socket = io();
 var username;
 var id;
 
+var linkDetectionRegex = new RegExp('((http|https|ftp|ftps)\:\/\/)?[a-zA-Z0-9\-\.]+\.([a-z]{1|2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal|fr|es|org)(\/\S*)?');
+
 socket.on('connect', function() {
   id = socket.id;
 });
@@ -28,7 +30,7 @@ socket.on('newMessage', function(message) {
   }
   var html = Mustache.render(template, {
     from: message.from,
-    text: message.text,
+    text: advancedText(message.text),
     createdAt: formattedTime
   });
 
@@ -81,4 +83,14 @@ $(window).resize(function() {
 
 function resizeChat() {
   $('#messages').height(window.innerHeight-200);
+}
+
+function advancedText(text) {
+  return text.replace(linkDetectionRegex, function(url) {
+    var address;
+    address = /[a-z]+:\/\//.test(url) ? url : "http://" + url;
+    url = url.replace(/^https?:\/\//, '');
+    console.log("<a href='" + address + "' target='_blank'>" + url + "</a>");
+    return "<a href='" + address + "' target='_blank'>" + url + "</a>";
+  });
 }
